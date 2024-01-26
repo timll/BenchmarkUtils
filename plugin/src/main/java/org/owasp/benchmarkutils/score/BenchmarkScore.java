@@ -853,7 +853,8 @@ public class BenchmarkScore extends AbstractMojo {
             // algorithm
             if (tool.startsWith("AppScan")
                     || tool.startsWith("Vera")
-                    || tool.startsWith("CodeQL")) {
+                    || tool.startsWith("CodeQL")
+                    || tool.startsWith("VUSC")) {
                 if (expectedCWE == 328 && actualCWE == 327) {
                     match = true;
                 }

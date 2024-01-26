@@ -1,0 +1,387 @@
+{
+  "id": 1,
+  "name": "benchmark.war",
+  "submitDate": 1706200078651,
+  "status": {
+    "pendingAnalyses": 0,
+    "skippedAnalyses": 0,
+    "runningAnalyses": 0,
+    "failedAnalyses": 0,
+    "finishedAnalyses": 10,
+    "hasWarnings": false,
+    "statusText": "Finished",
+    "vulnerabilityFindingStatistics": {
+      "low": 113,
+      "medium": 0,
+      "high": 320
+    },
+    "progressPercent": 100,
+    "finishDate": 1706200248710
+  },
+  "metadata": {
+    "sha256Hash": "2796dd07d59a22c13d24d777192b3130a43c950b6a94591fb242c912f5ba1092",
+    "displayName": "OWASP Benchmark",
+    "versionName": "3.1",
+    "type": "WARMetadata",
+    "platform": {
+      "humanReadableName": "Web Application Archive",
+      "id": "WAR_FILE"
+    }
+  },
+  "jobResults": {
+    "vulnerabilityFindings": [
+      {
+        "id": 1,
+        "type": "CryptoCheckAnalysis_InsecureCryptoAlgorithm",
+        "location": {
+          "type": "CodeLocation",
+          "id": 0,
+          "codeLocationType": "Statement",
+          "className": "org.owasp.benchmark.testcode.BenchmarkTest01318",
+          "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+          "statement": "$Cipher51 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"DES/CBC/PKCS5PADDING\", $Provider50)",
+          "lineInIntermediateCode": 23,
+          "lineInOriginalCode": 64
+        },
+        "additionalData": [
+          {
+            "name": "Algorithm",
+            "data": "DES/CBC/PKCS5PADDING",
+            "path": {
+              "locations": [
+                {
+                  "type": "CodeLocation",
+                  "id": 4,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest01318",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$Cipher51 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>(\"DES/CBC/PKCS5PADDING\", $Provider50)",
+                  "lineInIntermediateCode": 23,
+                  "lineInOriginalCode": 64
+                }
+              ]
+            },
+            "type": "StringAdditionalData"
+          }
+        ],
+        "severity": "HIGH",
+        "category": "Cryptography",
+        "description": "An insecure cryptographic algorithm is used. Insecure cryptographic algorithms may enable attackers to get access to information,\nwhich is supposed to be protected.\nIn case of encryption algorithms, this might include deciphering and tampering with the data.\nIn case of hashing algorithms, an attacker might be able to generate passwords, which deliver the same hash as a known value. Depending\non the system architecture, this can be used to get access to parts of the system, which are not supposed to be accessible.",
+        "mitigiation": "Use up-to-date cryptographic algorithms.\n<ul>\n<li><i>Symmetric encryption:</i> An example for a cipher considered secure is <i>AES/CBC/PKCS7Padding</i></li>\n<li><i>Asymmetric encryption:</i> An example for a cipher considered secure is <i>RSA/NONE/PKCS1Padding</i>. Use this cipher\nto encrypt a randomly generated symmetric cipher key.</li>\n</ul>",
+        "title": "\n\nInsecure Crypto Algorithm\n\n\t",
+        "references": [
+          {
+            "shortDescription": "Semmle Reference",
+            "type": "CatalogReference",
+            "referenceGroup": {
+              "name": "Semmle",
+              "description": "<a target=\"_blank\" href=\"https://help.semmle.com/wiki/display/JAVA\">Semmle </a> is a code\n\t        \tquality and security analysis tool that checks for various vulnerabilities. VUSC implements\n\t        \tmany of the checks as well and references the Semmle documentation where applicable to help\n\t        \tin mixed environments where multiple scanning tools are deployed."
+            },
+            "url": "https://help.semmle.com/wiki/display/JAVA/Use+of+a+potentially+broken+or+risky+cryptographic+algorithm",
+            "id": "java/potentially-weak-cryptographic-algorithm"
+          },
+          {
+            "shortDescription": "Use of a Broken or Risky Cryptographic Algorithm",
+            "type": "CatalogReference",
+            "referenceGroup": {
+              "name": "CWE",
+              "description": "<a target=\"_blank\" href=\"https://cwe.mitre.org/\">CWE™ </a> is a community-developed list of common software\n\t        \tsecurity weaknesses. It serves as a common language, a measuring stick for software security tools, and as\n\t        \ta baseline for weakness identification, mitigation, and prevention efforts."
+            },
+            "url": "https://cwe.mitre.org/data/definitions/327.html",
+            "id": "CWE-327"
+          },
+          {
+            "shortDescription": "Reversible One-Way Hash",
+            "type": "CatalogReference",
+            "referenceGroup": {
+              "name": "CWE",
+              "description": "<a target=\"_blank\" href=\"https://cwe.mitre.org/\">CWE™ </a> is a community-developed list of common software\n\t        \tsecurity weaknesses. It serves as a common language, a measuring stick for software security tools, and as\n\t        \ta baseline for weakness identification, mitigation, and prevention efforts."
+            },
+            "url": "https://cwe.mitre.org/data/definitions/328.html",
+            "id": "CWE-328"
+          }
+        ]
+      },
+      {
+        "id": 11903,
+        "type": "Storage_DirectoryTraversalWrite",
+        "location": {
+          "type": "CodeLocation",
+          "id": 0,
+          "codeLocationType": "Statement",
+          "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+          "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+          "statement": "specialinvoke $FileOutputStream26.<java.io.FileOutputStream: void <init>(java.lang.String,boolean)>($String25, false)",
+          "lineInIntermediateCode": 90,
+          "lineInOriginalCode": 56
+        },
+        "dataflows": [
+          {
+            "id": 11904,
+            "path": {
+              "locations": [
+                {
+                  "type": "CodeLocation",
+                  "id": 11907,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$arrString3 = interfaceinvoke $param1.<javax.servlet.http.HttpServletRequest: java.lang.String[] getParameterValues(java.lang.String)>(\"BenchmarkTest02470\")",
+                  "lineInIntermediateCode": 66,
+                  "lineInOriginalCode": 43
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11908,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String17 = $arrString3[0]",
+                  "lineInIntermediateCode": 70,
+                  "lineInOriginalCode": 45
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11909,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String18 = staticinvoke <org.owasp.benchmark.testcode.BenchmarkTest02470: java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)>($param1, $String17)",
+                  "lineInIntermediateCode": 77,
+                  "lineInOriginalCode": 48
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11910,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "$String3 = $param2",
+                  "lineInIntermediateCode": 34,
+                  "lineInOriginalCode": 85
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11911,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "return $String3",
+                  "lineInIntermediateCode": 37,
+                  "lineInOriginalCode": 87
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11912,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$StringBuilder24 = virtualinvoke $StringBuilder23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($String18)",
+                  "lineInIntermediateCode": 86,
+                  "lineInOriginalCode": 54
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11913,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String25 = virtualinvoke $StringBuilder24.<java.lang.StringBuilder: java.lang.String toString()>()",
+                  "lineInIntermediateCode": 87,
+                  "lineInOriginalCode": 54
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11914,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02470",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "specialinvoke $FileOutputStream26.<java.io.FileOutputStream: void <init>(java.lang.String,boolean)>($String25, false)",
+                  "lineInIntermediateCode": 90,
+                  "lineInOriginalCode": 56
+                }
+              ]
+            },
+            "sourceCategory": "Inputs to a servlet request handler",
+            "sourceName": "Parameters",
+            "sinkCategory": "File Names and Paths for Write Operations",
+            "sinkName": "The target file",
+            "relation": "SAVED_DATA",
+            "relationHumanReadable": "Saved Data",
+            "sourceMetaData": {
+              "additionalInfo": [
+                {
+                  "name": "Key",
+                  "data": "BenchmarkTest02470",
+                  "type": "StringAdditionalData"
+                }
+              ]
+            }
+          }
+        ],
+        "severity": "HIGH",
+        "category": "Storage",
+        "description": "The application accesses files on the local hard disk. Since the attacker is able to influence the\nfile name, he can also target files outside the directory intended by the developer. This vulnerability\nmay allow attackers to overwrite or manipulate existing files such as security-sensitive configuration.",
+        "mitigiation": "Always generate file names on the server. Do not trust external input as parts of file names or paths.",
+        "title": "\n\nDirectory traversal vulnerability (file write)\n\n\t"
+      },
+      {
+        "id": 11417,
+        "type": "XSSAnalysis_XSS",
+        "location": {
+          "type": "CodeLocation",
+          "id": 0,
+          "codeLocationType": "Statement",
+          "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+          "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+          "statement": "virtualinvoke $PrintWriter6.<java.io.PrintWriter: java.io.PrintWriter printf(java.util.Locale,java.lang.String,java.lang.Object[])>($Locale7, \"Formatted like: %1$s and %2$s.\", $arrObject5)",
+          "lineInIntermediateCode": 62,
+          "lineInOriginalCode": 50
+        },
+        "dataflows": [
+          {
+            "id": 11418,
+            "path": {
+              "locations": [
+                {
+                  "type": "CodeLocation",
+                  "id": 11421,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String3 = interfaceinvoke $param1.<javax.servlet.http.HttpServletRequest: java.lang.String getParameter(java.lang.String)>(\"BenchmarkTest02130\")",
+                  "lineInIntermediateCode": 51,
+                  "lineInOriginalCode": 43
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11422,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String9 = $String3",
+                  "lineInIntermediateCode": 52,
+                  "lineInOriginalCode": 43
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11423,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$String4 = staticinvoke <org.owasp.benchmark.testcode.BenchmarkTest02130: java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)>($param1, $String9)",
+                  "lineInIntermediateCode": 57,
+                  "lineInOriginalCode": 46
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11424,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "specialinvoke $StringBuilder1.<java.lang.StringBuilder: void <init>(java.lang.String)>($param2)",
+                  "lineInIntermediateCode": 25,
+                  "lineInOriginalCode": 56
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11425,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "$StringBuilder3 = virtualinvoke $StringBuilder1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(\"_SafeStuff\")",
+                  "lineInIntermediateCode": 26,
+                  "lineInOriginalCode": 57
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11426,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "$String4 = virtualinvoke $StringBuilder3.<java.lang.StringBuilder: java.lang.String toString()>()",
+                  "lineInIntermediateCode": 27,
+                  "lineInOriginalCode": 57
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11427,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "java.lang.String doSomething(javax.servlet.http.HttpServletRequest,java.lang.String)",
+                  "statement": "return $String4",
+                  "lineInIntermediateCode": 28,
+                  "lineInOriginalCode": 59
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11428,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$arrObject5[1] = $String4",
+                  "lineInIntermediateCode": 0,
+                  "lineInOriginalCode": 49
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11429,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "virtualinvoke $PrintWriter6.<java.io.PrintWriter: java.io.PrintWriter printf(java.util.Locale,java.lang.String,java.lang.Object[])>($Locale7, \"Formatted like: %1$s and %2$s.\", $arrObject5)",
+                  "lineInIntermediateCode": 62,
+                  "lineInOriginalCode": 50
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11430,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "$PrintWriter6 = interfaceinvoke $param2.<javax.servlet.http.HttpServletResponse: java.io.PrintWriter getWriter()>()",
+                  "lineInIntermediateCode": 60,
+                  "lineInOriginalCode": 50
+                },
+                {
+                  "type": "CodeLocation",
+                  "id": 11431,
+                  "codeLocationType": "Statement",
+                  "className": "org.owasp.benchmark.testcode.BenchmarkTest02130",
+                  "memberName": "void doPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)",
+                  "statement": "virtualinvoke $PrintWriter6.<java.io.PrintWriter: java.io.PrintWriter printf(java.util.Locale,java.lang.String,java.lang.Object[])>($Locale7, \"Formatted like: %1$s and %2$s.\", $arrObject5)",
+                  "lineInIntermediateCode": 62,
+                  "lineInOriginalCode": 50
+                }
+              ]
+            },
+            "sourceCategory": "Inputs to a servlet request handler",
+            "sourceName": "Parameter",
+            "sinkCategory": "Outputs from a servlet request handler",
+            "sinkName": "Output Data",
+            "relation": "XSS",
+            "relationHumanReadable": "XSS Injection",
+            "sourceMetaData": {
+              "additionalInfo": [
+                {
+                  "name": "Key",
+                  "data": "BenchmarkTest02130",
+                  "type": "StringAdditionalData"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "analysisServerVersion": "2.0.0 Development",
+  "analysisServerDate": "30/10/2023 00:10",
+  "mayDelete": true,
+  "mayAbort": false,
+  "mayModify": true,
+  "isFailed": false,
+  "isFinished": true,
+  "reanalyzedJobId": -1,
+  "isDynamicAnalysisRun": false
+}

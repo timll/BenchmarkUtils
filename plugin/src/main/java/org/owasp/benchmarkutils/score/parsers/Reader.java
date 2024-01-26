@@ -98,6 +98,7 @@ public abstract class Reader {
                 new ThunderScanReader(),
                 new VeracodeReader(),
                 new VisualCodeGrepperReader(),
+                new VUSCReader(),
                 new W3AFReader(),
                 new WapitiJsonReader(),
                 new WapitiReader(),
