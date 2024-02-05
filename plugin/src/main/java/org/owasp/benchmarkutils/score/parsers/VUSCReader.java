@@ -60,6 +60,7 @@ public class VUSCReader extends Reader {
             case 0:
                 return guessCWE(vuln);
             case 1:
+                if (allMatches.get(0) == 327) return 0;
                 return allMatches.get(0);
             default:
                 // Command injection and XSS injection are also described with more specific CWEs
@@ -71,10 +72,12 @@ public class VUSCReader extends Reader {
                 if (allMatches.size() == 2
                         && allMatches.contains(327)
                         && allMatches.contains(328)) {
-                    if (vuln.getJSONObject(LOCATION)
-                            .getString("statement")
-                            .contains("MessageDigest")) return CweNumber.WEAK_HASH_ALGO;
-                    else return CweNumber.WEAK_CRYPTO_ALGO;
+                    //                    if (vuln.getJSONObject(LOCATION)
+                    //                            .getString("statement")
+                    //                            .contains("MessageDigest")) return
+                    // CweNumber.WEAK_HASH_ALGO;
+                    //                    else return CweNumber.WEAK_CRYPTO_ALGO;
+                    return 0;
                 }
 
                 System.err.println("Unexpected CWES: " + allMatches.toString());
